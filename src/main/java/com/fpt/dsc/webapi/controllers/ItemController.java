@@ -1,5 +1,8 @@
-package com.fpt.dsc.webapi.entitites;
+package com.fpt.dsc.webapi.controllers;
 
+import com.fpt.dsc.webapi.entitites.Item;
+import com.fpt.dsc.webapi.services.ItemService;
+import com.fpt.dsc.webapi.services.implement.ItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

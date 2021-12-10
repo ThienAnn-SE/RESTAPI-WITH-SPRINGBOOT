@@ -1,17 +1,19 @@
-package com.fpt.dsc.webapi.entitites;
+package com.fpt.dsc.webapi.services.implement;
 
-import org.springframework.stereotype.Service;
+import com.fpt.dsc.webapi.entitites.Item;
+import com.fpt.dsc.webapi.services.ItemService;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-@Service
-public class ItemService {
+@Component
+public class ItemServiceImpl implements ItemService {
 
     private List<Item> list;
 
-    public ItemService() {
+    public ItemServiceImpl() {
         this.list = new ArrayList<>();
         this.list.add(new Item("1L","Iron Sword", 25));
         this.list.add(new Item("2L","Poison", 9));
@@ -22,10 +24,12 @@ public class ItemService {
        return list.stream().anyMatch(item -> item.getId().equalsIgnoreCase(id));
     }
 
+    @Override
     public List<Item> getAllItems(){
         return list;
     }
 
+    @Override
     public boolean addNewItem(Item item){
         if(isExisted(item.getId())){
             throw new IllegalArgumentException("Item with this ID is already existed!");
@@ -33,6 +37,7 @@ public class ItemService {
         return this.list.add(item);
     }
 
+    @Override
     public void updateItem(Item item){
         if(!isExisted(item.getId())){
             throw new IllegalArgumentException("Item with this ID does not exist!");
@@ -48,6 +53,7 @@ public class ItemService {
         }
     }
 
+    @Override
     public boolean deleteItem(String id){
         if(!isExisted(id)){
             throw new IllegalArgumentException("Item with this ID does not exist!");
